@@ -29,7 +29,6 @@ export default function ThreeHourForecast({ city }) {
   };
 
   useEffect(() => {
-    console.log("City: " + city);
     fetchHourForecast();
   }, [city]);
 
@@ -37,7 +36,7 @@ export default function ThreeHourForecast({ city }) {
     <div className="text-white max-w-[375px] w-full h-[22%]">
       <Slider {...settings}>
         {hourForecast.map((forecast, index) => (
-          <div key={index} className="text-sm text-center">
+          <div key={index} className="text-sm text-center box-weather">
             <p>{formatUnix(forecast.dt)}</p>
             <div className="flex justify-center">
               <Image

@@ -14,7 +14,12 @@ module.exports = {
         layout: "140px 1fr auto",
       },
       backgroundImage: {
-        "weather-bg": "url('/image/weather-bg.jpg')",
+        "raining": "url('/image/giphy.gif')",
+        "daylight": "url('/image/daylight.jpg')",
+        "sunset": "url('/image/sunset.jpg')",
+        "sunrise": "url('/image/sunrise.jpg')",
+        "5pm": "url('/image/5pm.jpg')",
+        "12am": "url('/image/12am.jpg')",
       },
     },
   },
