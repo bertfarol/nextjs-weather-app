@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function CityList({ handleClick, queryCity, searchToggle, logoutRef }) {
+export default function CityList({ handleClick, queryCity, searchToggle }) {
   const [searchList, setSearchList] = useState([]);
 
   const fetchCityList = async () => {
@@ -23,8 +23,7 @@ export default function CityList({ handleClick, queryCity, searchToggle, logoutR
     <>
       {searchToggle && (
         <div
-          className="py-1 px-3 bg-white rounded absolute top-[75px] left-0 w-11/12 right-0 mx-auto z-10"
-          ref={logoutRef}
+          className="py-1 px-3 bg-white shadow-md	 rounded absolute top-[50px] left-0 w-11/12 right-0 mx-auto z-10"
         >
           {searchList.length > 0 ? (
             <>

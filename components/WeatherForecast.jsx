@@ -4,40 +4,42 @@ import ThreeHourForecast from "./ThreeHourForecast";
 import SearchInput from "./SearchInput";
 import CurrentForecast from "./CurrentForecast";
 
-
 export default function WeatherForecast() {
   const [searchCity, setSearchCity] = useState("");
   const [cityName, setCityName] = useState("las pinas");
-  const [openSearchList, setOpenSearchList] = useState(false);
-
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    // setCityName(searchCity);
-  };
+  const [openDropdownList, setOpenDropdownList] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
 
   const handleInputChange = (e) => {
     setSearchCity(e.target.value);
-    setOpenSearchList(true);
+    setOpenDropdownList(true);
   };
 
   const handleSearchList = (event) => {
     const city = event.target.firstChild.textContent;
     setCityName(city);
-    setOpenSearchList(false);
+    setOpenDropdownList(false);
+    setOpenSearch(false);
     setSearchCity("");
   };
 
   const handleClearInput = () => {
-    setOpenSearchList(false);
+    setOpenDropdownList(false);
     setSearchCity("");
   };
 
-  let logoutRef = useRef();
+  const handleSearchBar = () => {
+    setOpenSearch(!openSearch);
+  };
+
+  let searchBarRef = useRef();
 
   useEffect(() => {
     const handler = (e) => {
-      if (!logoutRef.current?.contains(e.target)) {
-        handleClearInput();
+      if (!searchBarRef.current?.contains(e.target)) {
+        setOpenSearch(false);
+        setOpenDropdownList(false)
+         setSearchCity("");
       }
     };
     document.addEventListener("mousedown", handler);
@@ -51,14 +53,15 @@ export default function WeatherForecast() {
       <SearchInput
         inputValue={searchCity}
         onChange={handleInputChange}
-        onClick={handleClearInput}
-        onSubmit={handleSearchSubmit}
-        searchToggle={openSearchList}
+        onClickRestText={handleClearInput}
+        searchToggle={openDropdownList}
         handleSearchList={handleSearchList}
-        logoutRef={logoutRef}
+        searchBarRef={searchBarRef}
+        onClickSearchIcon={handleSearchBar}
+        openSearchBar={openSearch}
       />
       <CurrentForecast city={cityName} />
-      <ThreeHourForecast city={cityName} />
+      {/* <ThreeHourForecast city={cityName} /> */}
     </>
   );
 }

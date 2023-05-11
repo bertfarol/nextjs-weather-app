@@ -1,33 +1,49 @@
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import CityList from "./CityList";
+import { useState } from "react";
 
 export default function SearchInput({
   inputValue,
   onChange,
-  onClick,
-  onSubmit,
+  onClickRestText,
   searchToggle,
   handleSearchList,
-  logoutRef,
+  onClickSearchIcon,
+  openSearchBar,
+  searchBarRef,
 }) {
   return (
-    <div className="relative pt-5 h-[10%]">
-      <form onSubmit={onSubmit}>
-        <div className="relative px-12 border border-white rounded-full">
-          <span className="absolute left-[15px] top-1/2 translate-y-[-50%]">
-            <MagnifyingGlassIcon className="w-5 h-5" />
+    // px-12 absolute left-[12px] top-1/2 translate-y-[-50%]
+    <div ref={searchBarRef} className="absolute top-5 w-full px-3">
+      <form>
+        <div
+          className={
+            (openSearchBar ? "bg-white shadow-lg border-white/70" : " ") +
+            " relative rounded-full flex items-center px-3 w-fit	text-slate-700 border border-white/30"
+          }
+        >
+          <span className="py-3">
+            <MagnifyingGlassIcon
+              className={
+                (openSearchBar ? "text-slate-500" : "text-white") + " w-5 h-5"
+              }
+              onClick={onClickSearchIcon}
+            />
           </span>
-          <input
-            type="text"
-            placeholder="Search City..."
-            value={inputValue}
-            onChange={onChange}
-            className="w-full py-3 text-sm bg-transparent outline-none placeholder-white/75 "
-          />
+          {openSearchBar && (
+            <input
+              type="text"
+              placeholder="Search City"
+              value={inputValue}
+              onChange={onChange}
+              className="py-2.5 px-3 text-base bg-transparent outline-none placeholder-black/75 capitalize"
+            />
+          )}
+
           <span>
             {searchToggle && (
               <XMarkIcon
-                onClick={onClick}
+                onClick={onClickRestText}
                 className="w-5 h-5 absolute right-[15px] top-1/2 translate-y-[-50%] cursor-pointer"
               />
             )}
@@ -38,7 +54,6 @@ export default function SearchInput({
         handleClick={handleSearchList}
         queryCity={inputValue}
         searchToggle={searchToggle}
-        logoutRef={logoutRef}
       />
     </div>
   );
