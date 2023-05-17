@@ -1,6 +1,5 @@
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import CityList from "./CityList";
-import { useState } from "react";
 
 export default function SearchInput({
   inputValue,
@@ -13,13 +12,12 @@ export default function SearchInput({
   searchBarRef,
 }) {
   return (
-    // px-12 absolute left-[12px] top-1/2 translate-y-[-50%]
-    <div ref={searchBarRef} className="absolute top-5 w-full px-3">
+    <div ref={searchBarRef} className="absolute top-5 px-3">
       <form>
         <div
           className={
-            (openSearchBar ? "bg-white shadow-lg border-white/70" : " ") +
-            " relative rounded-full flex items-center px-3 w-fit	text-slate-700 border border-white/30"
+            (openSearchBar ? "bg-white shadow-lg border-white/70 " : " ") +
+            "cursor-pointer relative rounded-full flex items-center px-3 w-fit	text-slate-700 border border-white/30 duration-300"
           }
         >
           <span className="py-3">
@@ -50,11 +48,13 @@ export default function SearchInput({
           </span>
         </div>
       </form>
-      <CityList
-        handleClick={handleSearchList}
-        queryCity={inputValue}
-        searchToggle={searchToggle}
-      />
+      {inputValue.length > 0 && (
+        <CityList
+          handleClick={handleSearchList}
+          queryCity={inputValue}
+          searchToggle={searchToggle}
+        />
+      )}
     </div>
   );
 }

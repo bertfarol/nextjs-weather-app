@@ -5,7 +5,7 @@ export default function CityList({ handleClick, queryCity, searchToggle }) {
 
   const fetchCityList = async () => {
     let response = await fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${queryCity}&limit=5&appid=44c4ac0fe54faa9d20a4a5dafaf4d201`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${queryCity}&limit=5&appid=${process.env.NEXT_PUBLIC_WEATHER_ID}`
     );
     let cities = await response.json();
 

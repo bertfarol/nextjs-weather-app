@@ -5,7 +5,7 @@ import { Montserrat } from "next/font/google";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Next JS Weather Application",
+  title: "Weather Application",
   description:
     "Generate current weather forecast for cities in the Philippines",
   viewport:

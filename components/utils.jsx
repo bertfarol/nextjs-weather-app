@@ -12,6 +12,7 @@ export function unixToTime(epoch) {
     });
 }
 
+
 export function formatNumber(decimal) {
     return decimal.toFixed(0); //round of decimal numbers
 }
