@@ -13,7 +13,7 @@ export default function CurrentForecast({ city }) {
 
   const fetchCurrentWeather = async () => {
     let response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_ID}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=44c4ac0fe54faa9d20a4a5dafaf4d201`
     );
     let data = await response.json();
     setForecastData(data);
